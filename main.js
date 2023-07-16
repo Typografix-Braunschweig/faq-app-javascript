@@ -1,5 +1,4 @@
 import "./style.css";
-import { setupCounter } from "./counter.js";
 import { getAllElements } from "./functions.js";
 
 document.querySelector("#app").innerHTML = `
@@ -62,17 +61,7 @@ document.querySelector("#app").innerHTML = `
 				</div>
 				<div class="elementor-element elementor-element-5dde21a elementor-widget elementor-widget-html" data-id="5dde21a" data-element_type="widget" data-widget_type="html.default">
 				<div class="elementor-widget-container">
-			<style>
-#faq-container i{
-    margin-top: 11px;
-}
-#elementor-tab-content-1951{
-    display: none !important;
-}
-</style>
-<script>
-    const faq1 = document.query
-</script>		</div>
+					</div>
 				</div>
 				</div>
   </div>
