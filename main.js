@@ -67,4 +67,4 @@ document.querySelector("#app").innerHTML = `
   </div>
 `;
 
-getAllElements();
+faqAccordion();
