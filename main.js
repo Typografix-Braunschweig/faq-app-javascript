@@ -1,5 +1,5 @@
 import "./style.css";
-import { getAllElements } from "./functions.js";
+import { faqAccordion } from "./functions.js";
 
 document.querySelector("#app").innerHTML = `
   <div>
