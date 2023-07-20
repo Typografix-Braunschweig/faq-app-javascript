@@ -1,11 +1,28 @@
 export const getAllElements = () => {
-   const mainContainer = document.querySelector("[data-id='a7ba009']");
-   const allPluses = document.querySelectorAll("span.elementor-toggle-icon-closed");
+   const mainContainer = document.querySelector("#faq2-2");
+   mainContainer.firstElementChild.lastElementChild.classList.remove("elementor-toggle");
+
+   const allPluses = mainContainer.querySelectorAll("span.elementor-toggle-icon-closed");
+
    const allPlusesArray = Array.from(allPluses);
-   const allMinuses = document.querySelectorAll("span.elementor-toggle-icon-opened");
+   console.log(allPlusesArray);
+   const allMinuses = mainContainer.querySelectorAll("span.elementor-toggle-icon-opened");
    const allMinusesArray = Array.from(allMinuses);
-   const allBeschreibungen = document.querySelectorAll(".elementor-tab-content");
+
+   const allBeschreibungen = document.querySelectorAll("#faq2-2 .elementor-tab-content");
    const allBeschreibungenArray = Array.from(allBeschreibungen);
+
+   allPlusesArray.forEach((element) => {
+      element.style.display = "block";
+   });
+
+   allMinusesArray.forEach((element) => {
+      element.style.display = "none";
+   });
+
+   allBeschreibungenArray.forEach((element) => {
+      element.style.display = "none";
+   });
 
    let isOpen = false;
    let targetBeschreibung;
@@ -13,17 +30,10 @@ export const getAllElements = () => {
    let targetMinus;
 
    const toggleDisplay = (targetToToggleBeschreibung, targetToTogglePlus, targetToToggleMinus) => {
-      targetToToggleBeschreibung.style.display = isOpen ? "block" : "none";
-      targetToTogglePlus.firstElementChild.style.display = isOpen ? "none" : "block";
-      targetToTogglePlus.style.display = isOpen ? "none" : "block";
-      targetToToggleMinus.firstElementChild.style.display = isOpen ? "block" : "none";
-      targetToToggleMinus.style.display = isOpen ? "block" : "none";
-
       allPlusesArray
          .filter((plus) => plus !== targetToTogglePlus)
          .forEach((element) => {
             element.style.display = "block";
-            targetToTogglePlus.firstElementChild.style.display = "block";
          });
 
       allMinusesArray
@@ -37,26 +47,33 @@ export const getAllElements = () => {
          .forEach((element) => {
             element.style.display = "none";
          });
+
+      targetToToggleBeschreibung.style.display = isOpen ? "block" : "none";
+      targetToTogglePlus.style.display = isOpen ? "none" : "block";
+      targetToToggleMinus.style.display = isOpen ? "block" : "none";
    };
 
    const getTarget = (e) => {
-      console.log(e.target.tagName.toLowerCase());
       if (e.target.tagName.toLowerCase() === "a") {
          targetBeschreibung = e.target.parentElement.nextElementSibling;
-         targetPlus = e.target.parentNode.childNodes[1].firstElementChild;
-         targetMinus = e.target.parentNode.childNodes[1].lastElementChild;
+         targetPlus = e.target.parentElement.firstElementChild.firstElementChild;
+         targetMinus = e.target.parentElement.firstElementChild.lastElementChild;
+      } else if (e.target.tagName.toLowerCase() === "i") {
+         targetBeschreibung = e.target.parentElement.parentElement.parentElement.nextElementSibling;
+         targetPlus = e.target.parentElement;
+         targetMinus = e.target.parentElement.nextElementSibling;
       } else {
          targetBeschreibung = e.target.nextElementSibling;
          targetPlus = e.target.childNodes[1].firstElementChild;
          targetMinus = e.target.childNodes[1].lastElementChild;
       }
 
-      if (targetBeschreibung.style.display === "block") {
+      if (!!(targetPlus.style.display === "none") && !!(targetBeschreibung.style.display === "block")) {
          isOpen = false;
       } else {
-         //  allBeschreibungenArray.some((el) => (el.style.display == "block" ? "" : (isOpen = !isOpen)));
          isOpen = true;
       }
+
       toggleDisplay(targetBeschreibung, targetPlus, targetMinus);
    };
 
