@@ -1,5 +1,5 @@
 import "./style.css";
-import { getAllElements } from "./functions.js";
+import { faqAccordion } from "./functions.js";
 
 document.querySelector("#app").innerHTML = `
   <div class="page-template page-template-elementor_header_footer page page-id-4309 logged-in elementor-default elementor-template-full-width elementor-kit-5 elementor-page elementor-page-4309 dialog-body dialog-buttons-body dialog-container dialog-buttons-container e--ua-blink e--ua-chrome e--ua-webkit" data-elementor-device-mode="desktop">
@@ -303,4 +303,4 @@ var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false
 </div>
 `;
 
-getAllElements();
+faqAccordion();
